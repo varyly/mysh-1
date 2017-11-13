@@ -1,16 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <signal.h>
+#include <sys/types.h>
+
 
 #include "commands.h"
 #include "built_in.h"
 #include "utils.h"
 
+
+void sig_handler(){
+printf("\n")}
 int main()
 {
   char buf[8096];
 
   while (1) {
+signal(SIGTSTP,sig_handler);
+signal(SIGINT,sig_handler);
     fgets(buf, 8096, stdin);
 
     struct single_command commands[512];
